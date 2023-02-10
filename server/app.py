@@ -7,8 +7,8 @@ import urllib.request, json, urllib.parse
 def create_app(text_config=None):
     app = Flask(__name__)
     app.url_map.strict_slashes= False
-    app.url_for("static", filename="style.css")
-    app.url_for("static", filename="index.js")
+    # app.url_for("static", filename="style.css")
+    # app.url_for("static", filename="index.js")
 
     @app.route("/")
     def test():
