@@ -107,3 +107,6 @@ dist
 .flaskenv
 __pycache__
 lib
+server/scripts
+
+
