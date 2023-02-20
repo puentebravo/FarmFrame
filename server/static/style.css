@@ -6,9 +6,13 @@
   --space: #191716;
 }
 
+.font-space {
+  font-family: 'Space Mono', monospace;
+}
+
 body {
   background-color: var(--space);
-  background-image: url("./images/warframeBackground.jpg");
+  background-image: url("./images/warframeBackground.png");
   background-repeat: no-repeat;
   color: var(--alabaster);
   background-size: stretch;
@@ -19,11 +23,15 @@ nav {
   position: static;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   text-align: center;
   width: 100%;
   height: 50px;
   background-color: var(--cobalt);
+}
+
+#title {
+  text-align: center;
 }
 
 /* Card Styling */
