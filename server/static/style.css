@@ -32,6 +32,8 @@ nav {
 
 #title {
   text-align: center;
+  padding-top: 10px;
+  font-size: x-large;
 }
 
 /* Card Styling */
