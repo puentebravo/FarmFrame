@@ -15,16 +15,28 @@
       href="{{ url_for('static', filename='style.css') }}"
     />
     <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='reset.css') }}"
-  />
+      rel="stylesheet"
+      href="{{ url_for('static', filename='reset.css') }}"
+    />
     <title>FarmFrame</title>
   </head>
   <body>
     <nav>
-      <h1 id="title">FarmFrame</h1>
+      <h1 id="title" class="font-space">FarmFrame</h1>
     </nav>
-    <h1>Under Development</h1>
+    <h1 class="font-space">Under Development</h1>
+
+    <article class="card" id="hero">
+      <section id="searchBar">
+        <form>
+          <label for="itemSearch">
+            <input id="itemSearch" class="textEntry" type="text"
+            placeholder="Enter an Item"/>
+          </label>
+          <button class="button">Search</button>
+        </form>
+      </section>
+    </article>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
