@@ -27,7 +27,17 @@
 
     <article class="card" id="hero">
       <section id="searchBar">
+        
+
         <form id="searchForm">
+          <label for="itemSelect">What are you farming?</label>
+        <select name="itemSelect" id="itemSelect" form="searchForm" required>
+          <option value="item" selected>Item</option>
+          <option value="mod">Mod</option>
+          <option value="warframe">WarFrame</option>
+          <option value="weapon">Weapon</option>
+        </select>
+          <button id="submitBtn" class="button">SUBMIT</button>
           <label for="itemSearch">
             <input
               id="itemSearch"
