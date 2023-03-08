@@ -2,7 +2,7 @@
 
 FROM python:3.10-alpine
 
-WORKDIR /farmframe-server
+WORKDIR /farmframe
 
 COPY requirements.txt requirements.txt
 
