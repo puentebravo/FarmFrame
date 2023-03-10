@@ -27,17 +27,15 @@
 
     <article class="card" id="hero">
       <section id="searchBar">
-        
-
         <form id="searchForm">
-          <label for="itemSelect" class="font-space">What are you farming?</label>
-        <select name="itemSelect" id="itemSelect" form="searchForm" required>
-          <option value="item" selected>Item</option>
-          <option value="mod">Mod</option>
-          <option value="warframe">WarFrame</option>
-          <option value="weapon">Weapon</option>
-        </select>
-          
+          <label for="itemSelect" class="font-space">What do you need?</label>
+          <select name="itemSelect" id="itemSelect" form="searchForm" required>
+            <option value="item" selected>Item Drops</option>
+            <option value="mod">Mod Data</option>
+            <option value="warframe">WarFrame Data</option>
+            <option value="weapon">Weapon Data</option>
+          </select>
+
           <label for="itemSearch">
             <input
               id="itemSearch"
@@ -52,6 +50,11 @@
     </article>
 
     <h1 class="font-space" style="text-align: center">Under Development</h1>
+
+    <section id="results">
+
+
+    </section>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
