@@ -65,7 +65,7 @@ def create_app(text_config=None):
         res_array = json.loads(response)
 
         return res_array
-        
+     
     return app
 
 
