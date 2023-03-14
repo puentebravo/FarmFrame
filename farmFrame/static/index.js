@@ -85,52 +85,54 @@ const getFrame = async (frame) => {
 
   resultEl.textContent = "";
 
-  let element = data[0];
+  for (let i = 0; i < data.length; i++) {
+    let element = data[i];
 
-  let polarities = "";
+    let polarities = "";
 
-  for (let i = 0; i < element.polarities.length; i++) {
-    let currentIndex = element.polarities[i];
-    polarities += `${currentIndex}, `;
+    for (let i = 0; i < element.polarities.length; i++) {
+      let currentIndex = element.polarities[i];
+      polarities += `${currentIndex}, `;
+    }
+
+    let cardContainer = document.createElement("article");
+
+    cardContainer.setAttribute("class", "card font-space");
+
+    let cardHeader = document.createElement("h5");
+    let cardImg = document.createElement("img");
+    let cardDesc = document.createElement("p");
+    let cardAura = document.createElement("p");
+    let cardPassive = document.createElement("p");
+    let cardPolarities = document.createElement("p");
+    let cardVital = document.createElement("p");
+    let cardLink = document.createElement("p");
+    let cardHref = document.createElement("a");
+
+    cardHref.setAttribute("href", element.wikiaUrl);
+    cardHeader.textContent = element.name;
+    cardImg.setAttribute("src", element.wikiaThumbnail);
+    cardImg.setAttribute("class", "thumbNail");
+    cardDesc.textContent = `Description: ${element.description}`;
+    cardAura.textContent = `Aura Polarity: ${element.aura}`;
+    cardPassive.textContent = `Passive Ability: ${element.passiveDescription}`;
+    cardPolarities.textContent = polarities
+      ? `Polarities: ${polarities}`
+      : "No inherent polarities";
+    cardVital.textContent = `Health: ${element.health} / Shields: ${element.shield} / Armor: ${element.armor}`;
+    cardLink.textContent = "For more information, click here: ";
+    cardHref.textContent = "Wiki Link";
+
+    resultEl.appendChild(cardContainer);
+    cardContainer.appendChild(cardImg);
+    cardContainer.appendChild(cardDesc);
+    cardContainer.appendChild(cardAura);
+    cardContainer.appendChild(cardPassive);
+    cardContainer.appendChild(cardPolarities);
+    cardContainer.appendChild(cardVital);
+    cardContainer.appendChild(cardLink);
+    cardLink.appendChild(cardHref);
   }
-
-  let cardContainer = document.createElement("article");
-
-  cardContainer.setAttribute("class", "card font-space");
-
-  let cardHeader = document.createElement("h5");
-  let cardImg = document.createElement("img");
-  let cardDesc = document.createElement("p");
-  let cardAura = document.createElement("p");
-  let cardPassive = document.createElement("p");
-  let cardPolarities = document.createElement("p");
-  let cardVital = document.createElement("p");
-  let cardLink = document.createElement("p");
-  let cardHref = document.createElement("a");
-
-  cardHref.setAttribute("href", element.wikiaUrl);
-  cardHeader.textContent = element.name;
-  cardImg.setAttribute("src", element.wikiaThumbnail);
-  cardImg.setAttribute("class", "thumbNail");
-  cardDesc.textContent = `Description: ${element.description}`;
-  cardAura.textContent = `Aura Polarity: ${element.aura}`;
-  cardPassive.textContent = `Passive Ability: ${element.passiveDescription}`;
-  cardPolarities.textContent = polarities
-    ? `Polarities: ${polarities}`
-    : "No inherent polarities";
-  cardVital.textContent = `Health: ${element.health} / Shields: ${element.shield} / Armor: ${element.armor}`;
-  cardLink.textContent = "For more information, click here: ";
-  cardHref.textContent = "Wiki Link";
-
-  resultEl.appendChild(cardContainer);
-  cardContainer.appendChild(cardImg);
-  cardContainer.appendChild(cardDesc);
-  cardContainer.appendChild(cardAura);
-  cardContainer.appendChild(cardPassive);
-  cardContainer.appendChild(cardPolarities);
-  cardContainer.appendChild(cardVital);
-  cardContainer.appendChild(cardLink);
-  cardLink.appendChild(cardHref);
 };
 
 const getWeapon = async (weapon) => {
