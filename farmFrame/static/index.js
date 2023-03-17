@@ -140,6 +140,44 @@ const getWeapon = async (weapon) => {
   let data = await response.json();
 
   console.log("Query complete:", data);
+
+  resultEl.textContent = "";
+
+  let cardContainer = document.createElement("article");
+
+  cardContainer.setAttribute("class", "card font-space");
+
+  let cardHeader = document.createElement("h5");
+  let cardDesc = document.createElement("p");
+  let cardDmg = document.createElement("p");
+  let cardFire = document.createElement("p");
+  let cardAcc = document.createElement("p");
+  let cardMag = document.createElement("p");
+  let cardType = document.createElement("p");
+  let cardLink = document.createElement("p");
+  let cardHref = document.createElement("a");
+
+  cardHref.setAttribute("href", data.wikiaUrl);
+  cardHeader.textContent = data.name;
+  cardDesc.textContent = `Description: ${data.description}`;
+  cardDmg.textContent = `Total Damage: ${data.totalDamage}`;
+  cardFire.textContent = `Rate of Fire: ${data.fireRate}`;
+  cardAcc.textContent = `Accuracy: ${data.accuracy}`;
+  cardMag.textContent = `Magazine size: ${data.magazineSize}`;
+  cardType.textContent = `Class: ${data.type}`;
+  cardLink.textContent = "For more information, click here: ";
+  cardHref.textContent = "Wiki Link";
+
+  resultEl.appendChild(cardContainer);
+  cardContainer.appendChild(cardHeader);
+  cardContainer.appendChild(cardDesc);
+  cardContainer.appendChild(cardDmg);
+  cardContainer.appendChild(cardFire);
+  cardContainer.appendChild(cardAcc);
+  cardContainer.appendChild(cardMag);
+  cardContainer.appendChild(cardType);
+  cardContainer.appendChild(cardLink);
+  cardLink.appendChild(cardHref);
 };
 
 searchForm.addEventListener("submit", (e) => {
