@@ -100,7 +100,7 @@ const getFrame = async (frame) => {
     cardContainer.setAttribute("class", "card font-space");
 
     let cardHeader = document.createElement("h5");
-    let cardImg = document.createElement("img");
+    // let cardImg = document.createElement("img");
     let cardDesc = document.createElement("p");
     let cardAura = document.createElement("p");
     let cardPassive = document.createElement("p");
@@ -111,7 +111,7 @@ const getFrame = async (frame) => {
 
     cardHref.setAttribute("href", element.wikiaUrl);
     cardHeader.textContent = element.name;
-    cardImg.setAttribute("src", element.wikiaThumbnail);
+    // cardImg.setAttribute("src", element.wikiaThumbnail);
     cardImg.setAttribute("class", "thumbNail");
     cardDesc.textContent = `Description: ${element.description}`;
     cardAura.textContent = `Aura Polarity: ${element.aura}`;
@@ -124,7 +124,7 @@ const getFrame = async (frame) => {
     cardHref.textContent = "Wiki Link";
 
     resultEl.appendChild(cardContainer);
-    cardContainer.appendChild(cardImg);
+    // cardContainer.appendChild(cardImg);
     cardContainer.appendChild(cardDesc);
     cardContainer.appendChild(cardAura);
     cardContainer.appendChild(cardPassive);
