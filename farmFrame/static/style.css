@@ -36,6 +36,12 @@ nav {
   font-size: x-large;
 }
 
+.text-lead {
+  color: var(--gold);
+  text-align: center;
+  
+}
+
 /* Card Styling */
 
 
