@@ -7,16 +7,24 @@
 }
 
 .font-space {
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
 }
 
 body {
-  background-color: var(--space);
+  /* background: rgb(25, 23, 22);
+  background: linear-gradient(
+    180deg,
+    rgba(25, 23, 22, 1) 0%,
+    rgba(61, 52, 139, 1) 35%,
+    rgba(113, 124, 137, 1) 100%
+  ); */
   background-image: url("./images/warframeBackground.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   color: var(--alabaster);
-  background-size: stretch;
+  background-size: cover;
   font-family: Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: scroll;
 }
 
 nav {
@@ -39,14 +47,13 @@ nav {
 .text-lead {
   color: var(--gold);
   text-align: center;
-  
 }
 
 /* Card Styling */
 
-
 .card {
   background: rgba(61, 52, 139, 0.4);
+  /* background: rgba(25, 23, 22, 0.4); */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(61, 52, 139, 0.2);
@@ -84,7 +91,7 @@ nav {
   letter-spacing: 1.5px;
 }
 
-.textEntry:hover, 
+.textEntry:hover,
 .textEntry:focus {
   padding: 12px 0;
   outline: 0;
