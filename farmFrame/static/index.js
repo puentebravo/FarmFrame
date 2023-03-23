@@ -7,6 +7,10 @@ const getItem = async (item) => {
   let response = await fetch(`/api/getItemDrops/${item}`);
   let data = await response.json();
 
+  if (data.length > 50) {
+    data.length = 50;
+  }
+
   console.log("Query complete:", data);
 
   resultEl.textContent = "";
@@ -24,7 +28,7 @@ const getItem = async (item) => {
     let cardRare = document.createElement("p");
 
     cardHeader.textContent = element.item;
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardPlace.textContent = `Found in: ${element.place}`;
     cardChance.textContent = `Drop Rate: ${element.chance}%`;
     cardRare.textContent = `Rarity: ${element.rarity}`;
@@ -61,7 +65,7 @@ const getMod = async (mod) => {
     cardHref.setAttribute("href", element.wikiaUrl);
 
     cardHeader.textContent = element.name;
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardPolarity.textContent = `Polarity: ${element.polarity}`;
     cardType.textContent = `Mod Type: ${element.type}`;
     cardInfo.textContent = `Effects: ${element.levelStats[0].stats}`;
@@ -102,7 +106,6 @@ const getFrame = async (frame) => {
     cardContainer.setAttribute("class", "card font-space");
 
     let cardHeader = document.createElement("h5");
-    // let cardImg = document.createElement("img");
     let cardDesc = document.createElement("p");
     let cardAura = document.createElement("p");
     let cardPassive = document.createElement("p");
@@ -112,10 +115,8 @@ const getFrame = async (frame) => {
     let cardHref = document.createElement("a");
 
     cardHref.setAttribute("href", element.wikiaUrl);
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardHeader.textContent = element.name;
-    // cardImg.setAttribute("src", element.wikiaThumbnail);
-    // cardImg.setAttribute("class", "thumbNail");
     cardDesc.textContent = `Description: ${element.description}`;
     cardAura.textContent = `Aura Polarity: ${element.aura}`;
     cardPassive.textContent = `Passive Ability: ${element.passiveDescription}`;
@@ -127,8 +128,7 @@ const getFrame = async (frame) => {
     cardHref.textContent = "Wiki Link";
 
     resultEl.appendChild(cardContainer);
-    // cardContainer.appendChild(cardImg);
-    cardContainer.appendChild(cardHeader)
+    cardContainer.appendChild(cardHeader);
     cardContainer.appendChild(cardDesc);
     cardContainer.appendChild(cardAura);
     cardContainer.appendChild(cardPassive);
@@ -163,7 +163,7 @@ const getWeapon = async (weapon) => {
 
   cardHref.setAttribute("href", data.wikiaUrl);
   cardHeader.textContent = data.name;
-  cardHeader.setAttribute("class", "text-lead")
+  cardHeader.setAttribute("class", "text-lead");
   cardDesc.textContent = `Description: ${data.description}`;
   cardDmg.textContent = `Total Damage: ${data.totalDamage}`;
   cardFire.textContent = `Rate of Fire: ${data.fireRate}`;
