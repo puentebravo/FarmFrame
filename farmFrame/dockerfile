@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["python3", "-m", "flask", "run"]
+CMD ["python", "-m", "flask", "run"]

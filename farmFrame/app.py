@@ -1,22 +1,26 @@
 from flask import Flask, render_template
-from werkzeug.middleware.proxy_fix import ProxyFix
+# from werkzeug.middleware.proxy_fix import ProxyFix
 import urllib.request, json, urllib.parse
 from waitress import serve
 
 
 
 
-def create_app(text_config=None):
-    app = Flask(__name__)
-    app.wsgi_app = ProxyFix(app.wsgi_app)
-    app.url_map.strict_slashes= False
- 
-    @app.route("/")
-    def test():
+
+app = Flask(__name__)
+#     app.wsgi_app = ProxyFix(
+#     app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+# )
+
+print(app)
+
+app.url_map.strict_slashes= False
+@app.route("/")
+def home():
         return render_template("index.html")
 
-    @app.route("/api/getItemDrops/<item>")
-    def getItem(item):
+@app.route("/api/getItemDrops/<item>")
+def getItem(item):
 
         sanitize = item.strip()
 
@@ -30,8 +34,8 @@ def create_app(text_config=None):
         return res_array
     
 
-    @app.route("/api/getMod/<mod>")
-    def getMod(mod):
+@app.route("/api/getMod/<mod>")
+def getMod(mod):
 
         sanitize = mod.strip()
 
@@ -44,8 +48,8 @@ def create_app(text_config=None):
         return res_array
 
 
-    @app.route("/api/getWarFrame/<frame>")
-    def getFrame(frame):
+@app.route("/api/getWarFrame/<frame>")
+def getFrame(frame):
         sanitize = frame.strip()
 
         api_destination = "https://api.warframestat.us/warframes/search/{}".format(urllib.parse.quote(sanitize))
@@ -57,8 +61,8 @@ def create_app(text_config=None):
         return res_array
 
 
-    @app.route("/api/getWeapon/<weapon>")
-    def getWeapon(weapon):
+@app.route("/api/getWeapon/<weapon>")
+def getWeapon(weapon):
         sanitize = weapon.strip()
 
         api_destination = "https://api.warframestat.us/weapons/{}".format(urllib.parse.quote(sanitize))
@@ -68,12 +72,7 @@ def create_app(text_config=None):
         res_array = json.loads(response)
 
         return res_array
+
     
-
-    if __name__ == "__main__":
-        serve(app, host="0.0.0.0", port=5000)
-
-     
-    return app
-
-
+if __name__ == "__main__":
+        app.run(host="127.0.0.1", port=80)
