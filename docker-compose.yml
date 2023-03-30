@@ -1,0 +1,20 @@
+version: "1.0"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  farmframe:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: farmframe
+    depends_on:
+      - nginx
+    ports:
+      - "8080:8080"
+    restart: always
