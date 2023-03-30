@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-# from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 import urllib.request, json, urllib.parse
 from waitress import serve
 
@@ -8,9 +8,9 @@ from waitress import serve
 
 
 app = Flask(__name__)
-#     app.wsgi_app = ProxyFix(
-#     app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
-# )
+app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
+)
 
 print(app)
 
@@ -74,5 +74,5 @@ def getWeapon(weapon):
         return res_array
 
     
-if __name__ == "__main__":
-        app.run(host="127.0.0.1", port=80)
+
+serve(app, listen="localhost:8080", url_scheme="https")
