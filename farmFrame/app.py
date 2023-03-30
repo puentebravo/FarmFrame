@@ -75,4 +75,4 @@ def getWeapon(weapon):
 
     
 
-serve(app, listen="localhost:8080", url_scheme="https")
+serve(app, listen="*:8080", url_scheme="https")
