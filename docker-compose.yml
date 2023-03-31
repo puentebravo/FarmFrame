@@ -8,10 +8,10 @@ services:
     restart: unless-stopped
 
   farmframe:
-    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
+    image: farmframe.azurecr.io/farmframe
     container_name: farmframe
     depends_on:
       - nginx
