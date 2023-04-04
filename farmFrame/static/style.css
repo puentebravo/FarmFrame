@@ -11,17 +11,10 @@
 }
 
 body {
-  background: rgb(25, 23, 22);
-  background: linear-gradient(
-    180deg,
-    rgba(25, 23, 22, 1) 0%,
-    rgba(61, 52, 139, 1) 35%,
-    rgba(113, 124, 137, 1) 100%
-  );
-  /* background-image: url("./images/warframeBackground.png");
-  background-repeat: repeat-x; */
+  background-image: url("./images/warframeBackground.png");
+  background-repeat: repeat;
   color: var(--alabaster);
-  /* background-size: cover; */
+  background-size: cover;
   font-family: Helvetica, Arial, sans-serif;
   height: 100vh;
   overflow: scroll;
@@ -52,8 +45,7 @@ nav {
 /* Card Styling */
 
 .card {
-  /* background: rgba(61, 52, 139, 0.4); */
-  background: rgba(25, 23, 22, 0.4);
+  background: rgba(61, 52, 139, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(61, 52, 139, 0.2);
