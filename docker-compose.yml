@@ -11,7 +11,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: farmframe.azurecr.io/farmframe
+    image: shd01containergroup.azurecr.io/farmframe
     container_name: farmframe
     depends_on:
       - nginx
