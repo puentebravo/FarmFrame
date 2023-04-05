@@ -6,6 +6,8 @@ Farmframe is a simple companion to Warframe, Digital Extremes' popular massively
 
 This is where FarmFrame comes in. Drawing directly from Warframe's items API, FarmFrame gives you a completely searchable reference at your fingertips, giving you access to drop rates and info on items, mods, warframes, and weapons in a simple, easy to use format.
 
+NOTE: This app is still in development. Updates will be noted here, when available. 
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -17,7 +19,7 @@ This is where FarmFrame comes in. Drawing directly from Warframe's items API, Fa
 
 ## Installation
 
-Navigate to the link above, and enjoy!
+This app is still in development. Once deployed, the link will appear here. 
 
 ## Usage
 
