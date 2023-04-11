@@ -19,13 +19,15 @@ NOTE: This app is still in development. Updates will be noted here, when availab
 
 ## Installation
 
-This app is still in development. Once deployed, the link will appear here. 
+Navigate here: [FarmFrame](https://farmframe.prouddune-432c391b.eastus2.azurecontainerapps.io) 
+
+and enjoy! 
 
 ## Usage
 
 First, select what you're looking for. Item Drops displays drop chances and locations for any item in the game; Warframes, Mods, and Weapons display information for the entered item, along with a link to Warframe's community wiki should you want more information.
 
-![]()
+![screenshot](farmFrame/static/images/farmframeScreen.png)
 
 ## Credits
 
