@@ -27,7 +27,7 @@ and enjoy!
 
 First, select what you're looking for. Item Drops displays drop chances and locations for any item in the game; Warframes, Mods, and Weapons display information for the entered item, along with a link to Warframe's community wiki should you want more information.
 
-![screenshot](farmFrame/static/images/farmframeScreen.png)
+![screenshot](farmframe/static/images/farmframeScreen.png)
 
 ## Credits
 
