@@ -31,7 +31,7 @@ First, select what you're looking for. Item Drops displays drop chances and loca
 
 ## Credits
 
-Warframe is a trademark of Digital Extremes, and I claim no affiliation with or ownership in any way, shape, or form with the game itself. This project is a personal work meant to make building out your in game collection as easy as can be. Additionally,  I'd like to thank the folks at DE for making their API both easy to use and well documented. 
+Warframe is a trademark of Digital Extremes, and I claim no affiliation or ownership in any way, shape, or form with the game itself. This project is a personal work meant to make building out your in game collection as easy as can be. Additionally, I'd like to thank the folks at DE for making their API both easy to use and well documented. 
 
 ## Contributing
 
