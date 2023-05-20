@@ -2,12 +2,25 @@ const searchForm = document.querySelector("#searchForm");
 const optionEl = document.querySelector("#itemSelect");
 const searchEl = document.querySelector("#itemSearch");
 const resultEl = document.querySelector("#results");
+const resHeader = document.querySelector("#resultHeader");
 
 const getItem = async (item) => {
   let response = await fetch(`/api/getItemDrops/${item}`);
   let data = await response.json();
 
-  console.log("Query complete:", data);
+  if (data.length > 50) {
+    data.length = 50;
+  }
+
+  console.log(data);
+
+  resHeader.setAttribute("class", "font-space text-lead show");
+
+  if (data.length !== 0) {
+    resHeader.textContent = "DATA_FOUND";
+  } else {
+    resHeader.textContent = "ERROR: DATA NOT FOUND";
+  }
 
   resultEl.textContent = "";
 
@@ -24,7 +37,7 @@ const getItem = async (item) => {
     let cardRare = document.createElement("p");
 
     cardHeader.textContent = element.item;
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardPlace.textContent = `Found in: ${element.place}`;
     cardChance.textContent = `Drop Rate: ${element.chance}%`;
     cardRare.textContent = `Rarity: ${element.rarity}`;
@@ -41,7 +54,13 @@ const getMod = async (mod) => {
   let response = await fetch(`/api/getMod/${mod}`);
   let data = await response.json();
 
-  console.log("Query complete:", data);
+  resHeader.setAttribute("class", "font-space text-lead show");
+
+  if (data.length !== 0) {
+    resHeader.textContent = "DATA_FOUND";
+  } else {
+    resHeader.textContent = "ERROR: DATA NOT FOUND";
+  }
 
   resultEl.textContent = "";
 
@@ -61,7 +80,7 @@ const getMod = async (mod) => {
     cardHref.setAttribute("href", element.wikiaUrl);
 
     cardHeader.textContent = element.name;
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardPolarity.textContent = `Polarity: ${element.polarity}`;
     cardType.textContent = `Mod Type: ${element.type}`;
     cardInfo.textContent = `Effects: ${element.levelStats[0].stats}`;
@@ -83,7 +102,13 @@ const getFrame = async (frame) => {
   let response = await fetch(`/api/getWarFrame/${frame}`);
   let data = await response.json();
 
-  console.log("Query complete:", data);
+  resHeader.setAttribute("class", "font-space text-lead show");
+
+  if (data.length !== 0) {
+    resHeader.textContent = "DATA_FOUND";
+  } else {
+    resHeader.textContent = "ERROR: DATA NOT FOUND";
+  }
 
   resultEl.textContent = "";
 
@@ -111,7 +136,7 @@ const getFrame = async (frame) => {
     let cardHref = document.createElement("a");
 
     cardHref.setAttribute("href", element.wikiaUrl);
-    cardHeader.setAttribute("class", "text-lead")
+    cardHeader.setAttribute("class", "text-lead");
     cardHeader.textContent = element.name;
     cardDesc.textContent = `Description: ${element.description}`;
     cardAura.textContent = `Aura Polarity: ${element.aura}`;
@@ -124,8 +149,7 @@ const getFrame = async (frame) => {
     cardHref.textContent = "Wiki Link";
 
     resultEl.appendChild(cardContainer);
-    // cardContainer.appendChild(cardImg);
-    cardContainer.appendChild(cardHeader)
+    cardContainer.appendChild(cardHeader);
     cardContainer.appendChild(cardDesc);
     cardContainer.appendChild(cardAura);
     cardContainer.appendChild(cardPassive);
@@ -140,7 +164,13 @@ const getWeapon = async (weapon) => {
   let response = await fetch(`/api/getWeapon/${weapon}`);
   let data = await response.json();
 
-  console.log("Query complete:", data);
+  resHeader.setAttribute("class", "font-space text-lead show");
+
+  if (data.length !== 0) {
+    resHeader.textContent = "DATA_FOUND";
+  } else {
+    resHeader.textContent = "ERROR: DATA NOT FOUND";
+  }
 
   resultEl.textContent = "";
 
@@ -160,7 +190,7 @@ const getWeapon = async (weapon) => {
 
   cardHref.setAttribute("href", data.wikiaUrl);
   cardHeader.textContent = data.name;
-  cardHeader.setAttribute("class", "text-lead")
+  cardHeader.setAttribute("class", "text-lead");
   cardDesc.textContent = `Description: ${data.description}`;
   cardDmg.textContent = `Total Damage: ${data.totalDamage}`;
   cardFire.textContent = `Rate of Fire: ${data.fireRate}`;
@@ -187,7 +217,6 @@ searchForm.addEventListener("submit", (e) => {
 
   let selectedOpt = optionEl.value;
   let searchVal = searchEl.value;
-  console.log(searchVal);
 
   switch (selectedOpt) {
     case "item":
