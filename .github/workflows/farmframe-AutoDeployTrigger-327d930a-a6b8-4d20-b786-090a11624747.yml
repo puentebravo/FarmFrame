@@ -1,0 +1,42 @@
+name: Trigger auto deployment for farmframe
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/farmframe-AutoDeployTrigger-327d930a-a6b8-4d20-b786-090a11624747.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.FARMFRAME_AZURE_CREDENTIALS }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: shd01containergroup.azurecr.io
+          registryUsername: ${{ secrets.FARMFRAME_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.FARMFRAME_REGISTRY_PASSWORD }}
+          containerAppName: farmframe
+          resourceGroup: e7a5fe5f-44f5-0892-238e-1cc6c942c6ab
+          imageToBuild: shd01containergroup.azurecr.io/farmframe:${{ github.sha }}
+          
+
+     
+
