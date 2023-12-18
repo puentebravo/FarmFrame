@@ -220,22 +220,18 @@ searchForm.addEventListener("submit", (e) => {
 
   switch (selectedOpt) {
     case "item":
-      console.warn("Item selected");
       getItem(searchVal);
       searchEl.value = "";
       break;
     case "mod":
-      console.warn("mod selected");
       getMod(searchVal);
       searchEl.value = "";
       break;
     case "warframe":
-      console.warn("warframe selected");
       getFrame(searchVal);
       searchEl.value = "";
       break;
     default:
-      console.warn("weapon selected");
       getWeapon(searchVal);
       searchEl.value = "";
   }
