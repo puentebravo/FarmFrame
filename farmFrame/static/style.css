@@ -42,6 +42,11 @@ select {
   font-size: x-large;
 }
 
+#title a{
+  color: var(--alabaster);
+  text-decoration: none;
+}
+
 .text-lead {
   color: var(--gold);
   text-align: center;
@@ -95,12 +100,12 @@ select {
 
 .textEntry:hover,
 .textEntry:focus {
-  padding: 12px 0;
+  /* padding: 12px 0; */
   outline: 0;
   border: 1px solid transparent;
   border-bottom: 1px solid var(--alabaster);
   border-radius: 0;
-  background-position: 100% center;
+  /* background-position: 100% center; */
 }
 
 /* Loader style/ Animation */
