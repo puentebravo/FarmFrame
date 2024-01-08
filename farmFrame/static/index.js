@@ -215,24 +215,10 @@ const getWeapon = async (weapon) => {
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  let selectedOpt = optionEl.value;
   let searchVal = searchEl.value;
 
-  switch (selectedOpt) {
-    case "item":
-      getItem(searchVal);
-      searchEl.value = "";
-      break;
-    case "mod":
-      getMod(searchVal);
-      searchEl.value = "";
-      break;
-    case "warframe":
-      getFrame(searchVal);
-      searchEl.value = "";
-      break;
-    default:
-      getWeapon(searchVal);
-      searchEl.value = "";
-  }
+  getItem(searchVal);
+  searchVal = ""
+
+
 });
