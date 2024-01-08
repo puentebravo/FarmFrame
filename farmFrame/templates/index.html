@@ -22,29 +22,22 @@
   </head>
   <body>
     <nav>
-      <h1 id="title" class="font-space">FarmFrame</h1>
+      <h1 id="title" class="font-space"><a href="/">FarmFrame</a></h1>
     </nav>
 
     <article class="card" id="hero">
       <section id="searchBar">
         <form id="searchForm">
-          <label for="itemSelect" class="font-space">What do you need?</label>
-          <select name="itemSelect" id="itemSelect" form="searchForm" required>
-            <option value="item" selected>Item Drops</option>
-            <option value="mod">Mod Data</option>
-            <option value="warframe">WarFrame Data</option>
-            <option value="weapon">Weapon Data</option>
-          </select>
 
           <label for="itemSearch">
             <input
               id="itemSearch"
               class="textEntry"
               type="text"
-              placeholder="Enter an Item"
+              placeholder="What do you need?""
             />
           </label>
-          <button id="submitBtn" class="glass-button">SUBMIT</button>
+          <button id="submitBtn" class="glass-button">Farm it!</button>
         </form>
       </section>
     </article>
