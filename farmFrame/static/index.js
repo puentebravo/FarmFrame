@@ -5,12 +5,10 @@ const resultEl = document.querySelector("#results");
 const resHeader = document.querySelector("#resultHeader");
 
 const getItem = async (item) => {
-  let response = await fetch(`/api/getItemDrops/${item}`);
-  let data = await response.json();
+  let dropResponse = await fetch(`/api/getItemDrops/${item}`);
+  let data = await dropResponse.json();
 
-  if (data.length > 50) {
-    data.length = 50;
-  }
+  // Need to implement pagination here. 
 
   console.log(data);
 
@@ -216,9 +214,7 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let searchVal = searchEl.value;
-
+  console.log(searchVal)
   getItem(searchVal);
-  searchVal = ""
-
-
+  searchEl.value = ""
 });
