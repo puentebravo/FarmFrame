@@ -44,6 +44,7 @@ nav {
 
 .text-lead {
   color: var(--gold);
+  font-family: "Space Mono", monospace;
   text-align: center;
 }
 
@@ -126,6 +127,13 @@ nav {
 #description {
   display: flex;
   flex-direction: column;
+  padding: 10px;
+}
+
+#descHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
 }
 
 #wikiLink {
