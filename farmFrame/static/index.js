@@ -11,8 +11,6 @@ const getItem = async (item) => {
 
   console.log(data);
 
-
-
   resultEl.textContent = "";
 
   for (let i = 0; i < data.length; i++) {
@@ -50,13 +48,18 @@ const getDesc = async (item) => {
   let descTextEl = document.querySelector("#descText");
   let wikiLinkEl = document.querySelector("#wikiLink");
 
+  console.log(descResponse);
+
+  descHeaderEl.textContent = "";
+  descTextEl.textContent = "";
+
+  if (wikiLinkEl.classList.contains("show")) {
+    wikiLinkEl.classList.remove("show");
+    wikiLinkEl.classList.add("hide");
+  }
+
   descEl.classList.remove("hide");
   descEl.classList.add("show");
-
-  if (!descResponse) {
-    descHeaderEl.textContent = "Sorry - Ordis couldn't find anything.";
-    descTextEl.textContent = "Are you sure you spelled it right?";
-  }
 
   if (descResponse.category == "Mods") {
     descHeaderEl.textContent = descResponse.name;
@@ -69,15 +72,22 @@ const getDesc = async (item) => {
     descHeaderEl.textContent = descResponse.name;
     descTextEl.textContent =
       "This item is an Arcane, a powerful and rare kind of mod that grants passive buffs to warframes, weapons, or operators. Arcanes can be upgraded 5 times for progressively more powerful abilities. Check back soon for more information on this unique class of mods! In the mean time, check below for the fastest way to pick one up.";
-  } else {
-
+  } else if (descResponse.error == 404) {
+    descHeaderEl.textContent = "Sorry - Ordis couldn't find anything.";
+    descTextEl.textContent = "Are you sure you spelled it right?";
+  } else if (descResponse.category == "Pets") {
     descHeaderEl.textContent = descResponse.name;
     descTextEl.textContent = descResponse.description;
     wikiLinkEl.classList.remove("hide");
     wikiLinkEl.classList.add("show");
-    wikiLinkEl.href = descResponse.wikiaUrl
+    wikiLinkEl.href = "https://warframe.fandom.com/wiki/Companion";
+  } else {
+    descHeaderEl.textContent = descResponse.name;
+    descTextEl.textContent = descResponse.description;
+    wikiLinkEl.classList.remove("hide");
+    wikiLinkEl.classList.add("show");
+    wikiLinkEl.href = descResponse.wikiaUrl;
   }
-  console.log(descResponse);
 };
 
 searchForm.addEventListener("submit", (e) => {
