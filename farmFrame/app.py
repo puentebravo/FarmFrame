@@ -29,48 +29,23 @@ def getItem(item):
         response = urllib.request.urlopen(page).read()
         res_array = json.loads(response)
 
-        return res_array
+        sorted_results = sorted( res_array, key= lambda chance: chance['chance'], reverse=True)
+
+        return sorted_results
+
+
+@app.route("/api/getItemDesc/<item>")
+def getDesc(item):
+        sanitize = item.strip()
+
+        api_destination = "https://api.warframestat.us/items/{}".format(urllib.parse.quote(sanitize))
+
+        page = urllib.request.Request(api_destination, headers={"User-Agent": "Mozilla/5.0"})
+        response = urllib.request.urlopen(page).read()
+        res_item = json.loads(response)
+
+        return res_item
     
-
-@app.route("/api/getMod/<mod>")
-def getMod(mod):
-
-        sanitize = mod.strip()
-
-        api_destination = "https://api.warframestat.us/mods/search/{}".format(urllib.parse.quote(sanitize))
-
-        page = urllib.request.Request(api_destination, headers={'User-Agent': 'Mozilla/5.0'})
-        response = urllib.request.urlopen(page).read()
-        res_array = json.loads(response)
-
-        return res_array
-
-
-@app.route("/api/getWarFrame/<frame>")
-def getFrame(frame):
-        sanitize = frame.strip()
-
-        api_destination = "https://api.warframestat.us/warframes/search/{}".format(urllib.parse.quote(sanitize))
-
-        page = urllib.request.Request(api_destination, headers={'User-Agent': 'Mozilla/5.0'})
-        response = urllib.request.urlopen(page).read()
-        res_array = json.loads(response)
-
-        return res_array
-
-
-@app.route("/api/getWeapon/<weapon>")
-def getWeapon(weapon):
-        sanitize = weapon.strip()
-
-        api_destination = "https://api.warframestat.us/weapons/{}".format(urllib.parse.quote(sanitize))
-    
-        page = urllib.request.Request(api_destination, headers={'User-Agent': 'Mozilla/5.0'})
-        response = urllib.request.urlopen(page).read()
-        res_array = json.loads(response)
-
-        return res_array
-
     
 
 serve(app, listen="*:8080", url_scheme="https")
