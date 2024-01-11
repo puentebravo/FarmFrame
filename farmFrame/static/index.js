@@ -2,23 +2,16 @@ const searchForm = document.querySelector("#searchForm");
 const optionEl = document.querySelector("#itemSelect");
 const searchEl = document.querySelector("#itemSearch");
 const resultEl = document.querySelector("#results");
-const resHeader = document.querySelector("#resultHeader");
 
 const getItem = async (item) => {
   let dropResponse = await fetch(`/api/getItemDrops/${item}`);
   let data = await dropResponse.json();
 
-  // Need to implement pagination here. 
+  // Need to implement pagination here.
 
   console.log(data);
 
-  resHeader.setAttribute("class", "font-space text-lead show");
 
-  if (data.length !== 0) {
-    resHeader.textContent = "DATA_FOUND";
-  } else {
-    resHeader.textContent = "ERROR: DATA NOT FOUND";
-  }
 
   resultEl.textContent = "";
 
@@ -48,173 +41,51 @@ const getItem = async (item) => {
   }
 };
 
-const getMod = async (mod) => {
-  let response = await fetch(`/api/getMod/${mod}`);
-  let data = await response.json();
+const getDesc = async (item) => {
+  let response = await fetch(`/api/getItemDesc/${item}`);
+  let descResponse = await response.json();
 
-  resHeader.setAttribute("class", "font-space text-lead show");
+  let descEl = document.querySelector("#description");
+  let descHeaderEl = document.querySelector("#descHeader");
+  let descTextEl = document.querySelector("#descText");
+  let wikiLinkEl = document.querySelector("#wikiLink");
 
-  if (data.length !== 0) {
-    resHeader.textContent = "DATA_FOUND";
+  descEl.classList.remove("hide");
+  descEl.classList.add("show");
+
+  if (!descResponse) {
+    descHeaderEl.textContent = "Sorry - Ordis couldn't find anything.";
+    descTextEl.textContent = "Are you sure you spelled it right?";
+  }
+
+  if (descResponse.category == "Mods") {
+    descHeaderEl.textContent = descResponse.name;
+    descTextEl.textContent =
+      "This item is a mod, capable of enhancing the abilities of weapons, warframes, or companions in various ways depending on their level and specs. Check out the wiki link for more information!";
+    wikiLinkEl.classList.remove("hide");
+    wikiLinkEl.classList.add("show");
+    wikiLinkEl.href = descResponse.wikiaUrl;
+  } else if (descResponse.category == "Arcanes") {
+    descHeaderEl.textContent = descResponse.name;
+    descTextEl.textContent =
+      "This item is an Arcane, a powerful and rare kind of mod that grants passive buffs to warframes, weapons, or operators. Arcanes can be upgraded 5 times for progressively more powerful abilities. Check back soon for more information on this unique class of mods! In the mean time, check below for the fastest way to pick one up.";
   } else {
-    resHeader.textContent = "ERROR: DATA NOT FOUND";
+
+    descHeaderEl.textContent = descResponse.name;
+    descTextEl.textContent = descResponse.description;
+    wikiLinkEl.classList.remove("hide");
+    wikiLinkEl.classList.add("show");
+    wikiLinkEl.href = descResponse.wikiaUrl
   }
-
-  resultEl.textContent = "";
-
-  for (let i = 0; i < data.length; i++) {
-    let element = data[i];
-
-    let cardContainer = document.createElement("article");
-
-    cardContainer.setAttribute("class", "card font-space");
-
-    let cardHeader = document.createElement("h5");
-    let cardPolarity = document.createElement("p");
-    let cardType = document.createElement("p");
-    let cardInfo = document.createElement("p");
-    let cardLink = document.createElement("p");
-    let cardHref = document.createElement("a");
-    cardHref.setAttribute("href", element.wikiaUrl);
-
-    cardHeader.textContent = element.name;
-    cardHeader.setAttribute("class", "text-lead");
-    cardPolarity.textContent = `Polarity: ${element.polarity}`;
-    cardType.textContent = `Mod Type: ${element.type}`;
-    cardInfo.textContent = `Effects: ${element.levelStats[0].stats}`;
-    cardLink.textContent = "For more information, click here:";
-    cardHref.textContent = "Wiki link";
-
-    resultEl.appendChild(cardContainer);
-    cardContainer.appendChild(cardHeader);
-    cardContainer.appendChild(cardType);
-    cardContainer.appendChild(cardPolarity);
-    cardContainer.appendChild(cardInfo);
-    cardContainer.appendChild(cardLink);
-    cardLink.appendChild(cardHref);
-  }
-};
-
-const getFrame = async (frame) => {
-  console.log("Fetching warframe data...");
-  let response = await fetch(`/api/getWarFrame/${frame}`);
-  let data = await response.json();
-
-  resHeader.setAttribute("class", "font-space text-lead show");
-
-  if (data.length !== 0) {
-    resHeader.textContent = "DATA_FOUND";
-  } else {
-    resHeader.textContent = "ERROR: DATA NOT FOUND";
-  }
-
-  resultEl.textContent = "";
-
-  for (let i = 0; i < data.length; i++) {
-    let element = data[i];
-
-    let polarities = "";
-
-    for (let i = 0; i < element.polarities.length; i++) {
-      let currentIndex = element.polarities[i];
-      polarities += `${currentIndex}, `;
-    }
-
-    let cardContainer = document.createElement("article");
-
-    cardContainer.setAttribute("class", "card font-space");
-
-    let cardHeader = document.createElement("h5");
-    let cardDesc = document.createElement("p");
-    let cardAura = document.createElement("p");
-    let cardPassive = document.createElement("p");
-    let cardPolarities = document.createElement("p");
-    let cardVital = document.createElement("p");
-    let cardLink = document.createElement("p");
-    let cardHref = document.createElement("a");
-
-    cardHref.setAttribute("href", element.wikiaUrl);
-    cardHeader.setAttribute("class", "text-lead");
-    cardHeader.textContent = element.name;
-    cardDesc.textContent = `Description: ${element.description}`;
-    cardAura.textContent = `Aura Polarity: ${element.aura}`;
-    cardPassive.textContent = `Passive Ability: ${element.passiveDescription}`;
-    cardPolarities.textContent = polarities
-      ? `Polarities: ${polarities}`
-      : "No inherent polarities";
-    cardVital.textContent = `Health: ${element.health} / Shields: ${element.shield} / Armor: ${element.armor}`;
-    cardLink.textContent = "For more information, click here: ";
-    cardHref.textContent = "Wiki Link";
-
-    resultEl.appendChild(cardContainer);
-    cardContainer.appendChild(cardHeader);
-    cardContainer.appendChild(cardDesc);
-    cardContainer.appendChild(cardAura);
-    cardContainer.appendChild(cardPassive);
-    cardContainer.appendChild(cardPolarities);
-    cardContainer.appendChild(cardVital);
-    cardContainer.appendChild(cardLink);
-    cardLink.appendChild(cardHref);
-  }
-};
-
-const getWeapon = async (weapon) => {
-  let response = await fetch(`/api/getWeapon/${weapon}`);
-  let data = await response.json();
-
-  resHeader.setAttribute("class", "font-space text-lead show");
-
-  if (data.length !== 0) {
-    resHeader.textContent = "DATA_FOUND";
-  } else {
-    resHeader.textContent = "ERROR: DATA NOT FOUND";
-  }
-
-  resultEl.textContent = "";
-
-  let cardContainer = document.createElement("article");
-
-  cardContainer.setAttribute("class", "card font-space");
-
-  let cardHeader = document.createElement("h5");
-  let cardDesc = document.createElement("p");
-  let cardDmg = document.createElement("p");
-  let cardFire = document.createElement("p");
-  let cardAcc = document.createElement("p");
-  let cardMag = document.createElement("p");
-  let cardType = document.createElement("p");
-  let cardLink = document.createElement("p");
-  let cardHref = document.createElement("a");
-
-  cardHref.setAttribute("href", data.wikiaUrl);
-  cardHeader.textContent = data.name;
-  cardHeader.setAttribute("class", "text-lead");
-  cardDesc.textContent = `Description: ${data.description}`;
-  cardDmg.textContent = `Total Damage: ${data.totalDamage}`;
-  cardFire.textContent = `Rate of Fire: ${data.fireRate}`;
-  cardAcc.textContent = `Accuracy: ${data.accuracy}`;
-  cardMag.textContent = `Magazine size: ${data.magazineSize}`;
-  cardType.textContent = `Class: ${data.type}`;
-  cardLink.textContent = "For more information, click here: ";
-  cardHref.textContent = "Wiki Link";
-
-  resultEl.appendChild(cardContainer);
-  cardContainer.appendChild(cardHeader);
-  cardContainer.appendChild(cardDesc);
-  cardContainer.appendChild(cardDmg);
-  cardContainer.appendChild(cardFire);
-  cardContainer.appendChild(cardAcc);
-  cardContainer.appendChild(cardMag);
-  cardContainer.appendChild(cardType);
-  cardContainer.appendChild(cardLink);
-  cardLink.appendChild(cardHref);
+  console.log(descResponse);
 };
 
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let searchVal = searchEl.value;
-  console.log(searchVal)
+  console.log(searchVal);
   getItem(searchVal);
-  searchEl.value = ""
+  getDesc(searchVal);
+  searchEl.value = "";
 });
