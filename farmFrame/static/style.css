@@ -8,6 +8,7 @@
 
 .font-space {
   font-family: "Space Mono", monospace;
+  color: var(--alabaster);
 }
 
 body {
@@ -58,7 +59,7 @@ nav {
   padding: 10px;
   margin: 10px;
   animation: fadeIn 1.5s;
-  border-radius: 5px;
+  border-radius: 14px;
 }
 
 .card p {
@@ -118,6 +119,17 @@ nav {
   top: 50vh;
   margin-left: 45vw;
   margin-right: 50vw;
+}
+
+/* description section */
+
+#description {
+  display: flex;
+  flex-direction: column;
+}
+
+#wikiLink {
+  text-align: end;
 }
 
 /* Button styling */
