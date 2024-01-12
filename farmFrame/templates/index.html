@@ -28,28 +28,25 @@
     <article class="card" id="hero">
       <section id="searchBar">
         <form id="searchForm">
-            <input
-              id="itemSearch"
-              class="textEntry"
-              type="text"
-              placeholder="What do you need?""
-            />
+          <input
+            id="itemSearch"
+            class="textEntry"
+            type="text"
+            placeholder="What do you need?"
+          />
           <button id="submitBtn" class="glass-button">Farm it!</button>
         </form>
       </section>
     </article>
 
     <section id="description" class="hide">
-      <h2 id="descHeader" class="text-lead"></h2> 
+      <h2 id="descHeader" class="text-lead"></h2>
       <p id="descText" class="font-space"></p>
       <a id="wikiLink" class="font-space hide" href=""> - See Wiki Page ></a>
-
     </section>
 
-    <section id="results">
-
-
-    </section>
+    <h2 id="resHeader" class="text-lead"></h2>
+    <section id="results"></section>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
