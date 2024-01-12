@@ -41,10 +41,13 @@ def getDesc(item):
         api_destination = "https://api.warframestat.us/items/{}".format(urllib.parse.quote(sanitize))
 
         page = urllib.request.Request(api_destination, headers={"User-Agent": "Mozilla/5.0"})
-        response = urllib.request.urlopen(page).read()
-        res_item = json.loads(response)
 
-        return res_item
+        try:
+                response = urllib.request.urlopen(page).read()
+                res_item = json.loads(response)
+                return res_item
+        except urllib.error.HTTPError as e:
+                return {"error": e.code }
     
     
 
