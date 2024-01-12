@@ -35,8 +35,6 @@ const getItem = async (item) => {
   let dropResponse = await fetch(`/api/getItemDrops/${item}`);
   let data = await dropResponse.json();
 
-  console.log(data);
-
   resHeadEl.textContent = "";
 
   if (!Array.isArray(data)) {
@@ -48,8 +46,6 @@ const getItem = async (item) => {
   }
 
   let top4 = data.slice(0, 4);
-
-  console.log(top4);
 
   resHeadEl.textContent = "Fastest Farm:";
 
@@ -78,8 +74,6 @@ const getDesc = async (item) => {
   let descHeaderEl = document.querySelector("#descHeader");
   let descTextEl = document.querySelector("#descText");
   let wikiLinkEl = document.querySelector("#wikiLink");
-
-  console.log(descResponse);
 
   descHeaderEl.textContent = "";
   descTextEl.textContent = "";
@@ -125,7 +119,6 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let searchVal = searchEl.value;
-  console.log(searchVal);
   getItem(searchVal);
   getDesc(searchVal);
   searchEl.value = "";
