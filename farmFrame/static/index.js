@@ -2,40 +2,71 @@ const searchForm = document.querySelector("#searchForm");
 const optionEl = document.querySelector("#itemSelect");
 const searchEl = document.querySelector("#itemSearch");
 const resultEl = document.querySelector("#results");
+const resHeadEl = document.querySelector("#resHeader");
+
+const displayData = (dropData) => {
+  resultEl.textContent = "";
+  for (let i = 0; i < dropData.length; i++) {
+    let element = dropData[i];
+
+    let cardContainer = document.createElement("div");
+
+    cardContainer.setAttribute("class", "resultCard font-space");
+
+    let cardHeader = document.createElement("h5");
+    let cardPlace = document.createElement("p");
+    let cardChance = document.createElement("p");
+
+    cardChance.classList.add("font-heavy");
+
+    cardHeader.textContent = element.item;
+    cardHeader.setAttribute("class", "text-lead");
+    cardPlace.textContent = `${element.place}`;
+    cardChance.textContent = `${Math.round(element.chance)}%`;
+
+    resultEl.appendChild(cardContainer);
+    cardContainer.appendChild(cardChance);
+    cardContainer.appendChild(cardHeader);
+    cardContainer.appendChild(cardPlace);
+  }
+};
 
 const getItem = async (item) => {
   let dropResponse = await fetch(`/api/getItemDrops/${item}`);
   let data = await dropResponse.json();
 
-  // Need to implement pagination here.
-
   console.log(data);
 
-  resultEl.textContent = "";
+  resHeadEl.textContent = "";
 
-  for (let i = 0; i < data.length; i++) {
-    let element = data[i];
+  if (!Array.isArray(data)) {
+    return;
+  }
 
-    let cardContainer = document.createElement("div");
+  if (data.length == 0) {
+    return;
+  }
 
-    cardContainer.setAttribute("class", "card font-space");
+  let top4 = data.slice(0, 4);
 
-    let cardHeader = document.createElement("h5");
-    let cardPlace = document.createElement("p");
-    let cardChance = document.createElement("p");
-    let cardRare = document.createElement("p");
+  console.log(top4);
 
-    cardHeader.textContent = element.item;
-    cardHeader.setAttribute("class", "text-lead");
-    cardPlace.textContent = `Found in: ${element.place}`;
-    cardChance.textContent = `Drop Rate: ${element.chance}%`;
-    cardRare.textContent = `Rarity: ${element.rarity}`;
+  resHeadEl.textContent = "Fastest Farm:";
 
-    resultEl.appendChild(cardContainer);
-    cardContainer.appendChild(cardHeader);
-    cardContainer.appendChild(cardPlace);
-    cardContainer.appendChild(cardChance);
-    cardContainer.appendChild(cardRare);
+  displayData(top4);
+
+  if (top4.length !== data.length) {
+    let moreBtn = document.createElement("button");
+    moreBtn.classList.add("glass-button");
+    moreBtn.textContent = "Show more";
+    moreBtn.type = "button";
+    moreBtn.setAttribute("id", "moreBtn");
+
+    resultEl.appendChild(moreBtn);
+
+    moreBtn.addEventListener("click", function () {
+      displayData(data);
+    });
   }
 };
 
