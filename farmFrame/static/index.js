@@ -5,7 +5,6 @@ const resultEl = document.querySelector("#results");
 const resHeadEl = document.querySelector("#resHeader");
 
 const displayData = (dropData) => {
-  resultEl.textContent = "";
   for (let i = 0; i < dropData.length; i++) {
     let element = dropData[i];
 
@@ -36,7 +35,7 @@ const getItem = async (item) => {
   let data = await dropResponse.json();
 
   resHeadEl.textContent = "";
-
+  resultEl.textContent = "";
   if (!Array.isArray(data)) {
     return;
   }
@@ -119,6 +118,7 @@ searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   let searchVal = searchEl.value;
+
   getItem(searchVal);
   getDesc(searchVal);
   searchEl.value = "";
