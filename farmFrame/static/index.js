@@ -96,6 +96,9 @@ const getDesc = async (item) => {
     descHeaderEl.textContent = descResponse.name;
     descTextEl.textContent =
       "This item is an Arcane, a powerful and rare kind of mod that grants passive buffs to warframes, weapons, or operators. Arcanes can be upgraded 5 times for progressively more powerful abilities. Check back soon for more information on this unique class of mods! In the mean time, check below for the fastest way to pick one up.";
+    wikiLinkEl.classList.remove("hide");
+    wikiLinkEl.classList.add("show");
+    wikiLinkEl.href = `https://warframe.fandom.com/wiki/${item}`;
   } else if (descResponse.error == 404) {
     descHeaderEl.textContent = "Sorry - Ordis couldn't find anything.";
     descTextEl.textContent = "Are you sure you spelled it right?";
@@ -104,7 +107,7 @@ const getDesc = async (item) => {
     descTextEl.textContent = descResponse.description;
     wikiLinkEl.classList.remove("hide");
     wikiLinkEl.classList.add("show");
-    wikiLinkEl.href = "https://warframe.fandom.com/wiki/Companion";
+    wikiLinkEl.href = `https://warframe.fandom.com/wiki/${item}`;
   } else {
     descHeaderEl.textContent = descResponse.name;
     descTextEl.textContent = descResponse.description;
