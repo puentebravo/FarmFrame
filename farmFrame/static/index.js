@@ -5,6 +5,8 @@ const resultEl = document.querySelector("#results");
 const resHeadEl = document.querySelector("#resHeader");
 
 const displayData = (dropData) => {
+
+  resultEl.textContent = ""
   for (let i = 0; i < dropData.length; i++) {
     let element = dropData[i];
 
