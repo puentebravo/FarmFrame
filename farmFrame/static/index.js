@@ -85,7 +85,7 @@ const getDesc = async (item) => {
   }
 
   descEl.classList.remove("hide");
-  descEl.classList.add("show");
+  descEl.classList.add("show", "card");
 
   if (descResponse.category == "Mods") {
     descHeaderEl.textContent = descResponse.name;
