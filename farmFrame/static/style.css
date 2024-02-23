@@ -6,6 +6,27 @@
   --space: #191716;
 }
 
+nav {
+  position: static;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+}
+
+body {
+  background-image: url("./images/warframeBackground.png");
+  background-repeat: repeat;
+  color: var(--alabaster);
+  background-size: cover;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: scroll;
+}
+
+/* text styling  */
 .font-space {
   font-family: "Space Mono", monospace;
   color: var(--alabaster);
@@ -19,25 +40,26 @@
   margin-right: 5px;
 }
 
-body {
-  background-image: url("./images/warframeBackground.png");
-  background-repeat: repeat;
-  color: var(--alabaster);
-  background-size: cover;
-  font-family: Helvetica, Arial, sans-serif;
-  height: 100vh;
-  overflow: scroll;
+.text-neon {
+  color: var(--gold);
+  text-align: center;
+  text-shadow: 0px 0px 20px var(--gold);
+  font-family: "Space Mono", monospace;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.24px;
 }
 
-nav {
-  position: static;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
-  height: 50px;
+
+.text-lead {
+  color: var(--gold);
+  font-family: "Space Mono", monospace;
+  text-wrap: balance;
 }
+
+/* title styles */
 
 #title {
   text-align: center;
@@ -50,19 +72,10 @@ nav {
   text-decoration: none;
 }
 
-.text-lead {
-  color: var(--gold);
-  font-family: "Space Mono", monospace;
-  text-wrap: balance;
-}
-
+/* header styles */
 
 #resHeader {
   margin: 10px;
-  font-size: 24px;
-}
-
-#descHeader {
   font-size: 24px;
 }
 
@@ -163,7 +176,6 @@ nav {
 #descHeader {
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: left;
 }
 
 #wikiLink {
