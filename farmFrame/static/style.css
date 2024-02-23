@@ -114,6 +114,11 @@ body {
   text-align: center;
 }
 
+.subDiv {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Form styling */
 
 #searchForm {
