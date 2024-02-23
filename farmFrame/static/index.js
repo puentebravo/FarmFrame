@@ -17,6 +17,10 @@ const displayData = (dropData) => {
     let cardHeader = document.createElement("h5");
     let cardPlace = document.createElement("p");
     let cardChance = document.createElement("p");
+    let cardSubDiv = document.createElement("div");
+
+    cardSubDiv.classList.add("subDiv")
+
 
     cardChance.classList.add("font-heavy");
 
@@ -27,8 +31,9 @@ const displayData = (dropData) => {
 
     resultEl.appendChild(cardContainer);
     cardContainer.appendChild(cardChance);
-    cardContainer.appendChild(cardHeader);
-    cardContainer.appendChild(cardPlace);
+    cardContainer.appendChild(cardSubDiv)
+    cardSubDiv.appendChild(cardHeader);
+    cardSubDiv.appendChild(cardPlace);
   }
 };
 
