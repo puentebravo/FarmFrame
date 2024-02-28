@@ -64,10 +64,12 @@ const getItem = async (item) => {
     moreBtn.type = "button";
     moreBtn.setAttribute("id", "moreBtn");
 
+    let expandedDisplay = data.slice(0, 15)
+
     resultEl.appendChild(moreBtn);
 
     moreBtn.addEventListener("click", function () {
-      displayData(data);
+      displayData(expandedDisplay);
     });
   }
 };
