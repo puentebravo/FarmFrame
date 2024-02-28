@@ -101,7 +101,7 @@ body {
 .resultCard {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   background: rgba(61, 52, 139, 0.4);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
