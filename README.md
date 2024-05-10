@@ -19,7 +19,7 @@ NOTE: This app is still in development. Updates will be noted here, when availab
 
 ## Installation
 
-Navigate here: [FarmFrame](https://farmframe.prouddune-432c391b.eastus2.azurecontainerapps.io) 
+Navigate here: [FarmFrame](https://www.farmframe.pro) 
 
 and enjoy! 
 
