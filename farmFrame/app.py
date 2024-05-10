@@ -1,5 +1,4 @@
 from flask import Flask, render_template
-from werkzeug.middleware.proxy_fix import ProxyFix
 import urllib.request, json, urllib.parse
 from waitress import serve
 
@@ -8,9 +7,6 @@ from waitress import serve
 
 
 app = Flask(__name__)
-# app.wsgi_app = ProxyFix(
-#         app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1
-# )
 
 app.url_map.strict_slashes= False
 @app.route("/")
