@@ -245,3 +245,17 @@ body {
     opacity: 1;
   }
 }
+
+@media (min-width: 720px) {
+  #hero, .card {
+    width: 75vw;
+    margin: auto;
+  }
+
+  .resultCard {
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
