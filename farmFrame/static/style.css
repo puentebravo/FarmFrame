@@ -210,11 +210,16 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.deleteBtn {
+  width: 40px;
+}
+
 #moreBtn {
   margin: 10px;
   width: 95%;
 }
-/* result section styling */
+
+/* section styling */ 
 
 #results {
   display: flex;
