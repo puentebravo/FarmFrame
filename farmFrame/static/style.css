@@ -52,7 +52,6 @@ body {
   letter-spacing: 0.24px;
 }
 
-
 .text-lead {
   color: var(--gold);
   font-family: "Space Mono", monospace;
@@ -62,6 +61,7 @@ body {
 .text-favorite {
   padding-top: 15px;
   font-size: larger;
+  cursor: pointer;
 }
 
 .text-lead h5 {
@@ -228,7 +228,7 @@ body {
   width: 95%;
 }
 
-/* section styling */ 
+/* section styling */
 
 #results {
   display: flex;
@@ -261,7 +261,8 @@ body {
 }
 
 @media (min-width: 720px) {
-  #hero, .card {
+  #hero,
+  .card {
     width: 75vw;
     margin: auto;
   }
@@ -272,4 +273,9 @@ body {
     margin-right: auto;
   }
 
+  #moreBtn {
+    width: 75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
