@@ -23,12 +23,12 @@ const displayFavorites = () => {
       cardNumber.textContent = i + 1;
 
       let favText = document.createElement("h5");
-      favText.classList.add("text-lead");
+      favText.classList.add("text-lead", "text-favorite");
       favText.textContent = favoriteSearches[i].value;
 
       let deleteBtn = document.createElement("button");
       deleteBtn.setAttribute("class", "glass-button deleteBtn");
-      deleteBtn.innerHTML = `<i class="fa-regular fa-square-minus"></i>`;
+      deleteBtn.innerHTML = `<i class="fa-regular fa-square-minus" data-id="${favoriteSearches[i].id}"></i>`;
       deleteBtn.setAttribute("data-id", favoriteSearches[i].id);
 
       cardContainer.appendChild(cardNumber);
@@ -36,7 +36,7 @@ const displayFavorites = () => {
       cardContainer.appendChild(deleteBtn);
 
       deleteBtn.addEventListener("click", function (event) {
-        let targetId = event.target.parentNode.dataset.id;
+        let targetId = event.target.dataset.id;
 
         let filteredItems = favoriteSearches.filter(
           (item) => item.id != targetId
@@ -133,7 +133,7 @@ const getDesc = async (item) => {
 
   descHeaderEl.textContent = "";
   descTextEl.textContent = "";
-  favoriteBtnEl.innerHTML = `<i class="fa-regular fa-square-plus fa-sm fa-lg"></i> Save to Favorites`
+  favoriteBtnEl.innerHTML = `<i class="fa-regular fa-square-plus fa-sm fa-lg"></i> Save to Favorites`;
 
   if (wikiLinkEl.classList.contains("show")) {
     wikiLinkEl.classList.remove("show");
@@ -177,10 +177,11 @@ const getDesc = async (item) => {
   }
 
   favoriteBtnEl.addEventListener("click", function () {
-    const favoriteSearches = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favoriteSearches =
+      JSON.parse(localStorage.getItem("favorites")) || [];
     let favoriteObj = {
       id: Math.round(Math.random() * 10000000),
-      value: item,
+      value: descResponse.name,
     };
 
     favoriteSearches.push(favoriteObj);
