@@ -4,55 +4,6 @@ const searchEl = document.querySelector("#itemSearch");
 const resultEl = document.querySelector("#results");
 const resHeadEl = document.querySelector("#resHeader");
 
-const displayFavorites = () => {
-  const favoriteSearches = JSON.parse(localStorage.getItem("favorites")) || [];
-
-  resultEl.textContent = "";
-  if (favoriteSearches.length > 0) {
-    resHeadEl.textContent = "Favorite Searches";
-
-    for (let i = 0; i < favoriteSearches.length; i++) {
-      let cardContainer = document.createElement("div");
-
-      cardContainer.setAttribute("class", "resultCard font-space");
-
-      resultEl.appendChild(cardContainer);
-
-      let cardNumber = document.createElement("p");
-      cardNumber.classList.add("font-heavy");
-      cardNumber.textContent = i + 1;
-
-      let favText = document.createElement("h5");
-      favText.classList.add("text-lead", "text-favorite");
-      favText.textContent = favoriteSearches[i].value;
-
-      let deleteBtn = document.createElement("button");
-      deleteBtn.setAttribute("class", "glass-button deleteBtn");
-      deleteBtn.innerHTML = `<i class="fa-regular fa-square-minus" data-id="${favoriteSearches[i].id}"></i>`;
-      deleteBtn.setAttribute("data-id", favoriteSearches[i].id);
-
-      cardContainer.appendChild(cardNumber);
-      cardContainer.appendChild(favText);
-      cardContainer.appendChild(deleteBtn);
-
-      deleteBtn.addEventListener("click", function (event) {
-        let targetId = event.target.dataset.id;
-
-        let filteredItems = favoriteSearches.filter(
-          (item) => item.id != targetId
-        );
-
-        localStorage.setItem("favorites", JSON.stringify(filteredItems));
-
-        displayFavorites();
-      });
-    }
-  } else {
-    resHeadEl.textContent =
-      "No favorites yet - favorite a search to see it here";
-  }
-};
-
 const displayData = (dropData) => {
   resultEl.textContent = "";
   for (let i = 0; i < dropData.length; i++) {
@@ -122,6 +73,12 @@ const getItem = async (item) => {
 };
 
 const getDesc = async (item) => {
+  const favoriteSearches = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  const favoriteVals = favoriteSearches.map( fav => {
+    return fav.value
+  })
+
   let response = await fetch(`/api/getItemDesc/${item}`);
   let descResponse = await response.json();
 
@@ -133,7 +90,13 @@ const getDesc = async (item) => {
 
   descHeaderEl.textContent = "";
   descTextEl.textContent = "";
-  favoriteBtnEl.innerHTML = `<i class="fa-regular fa-square-plus fa-sm fa-lg"></i> Save to Favorites`;
+
+  if (favoriteVals.includes(item)) {
+    favoriteBtnEl.textContent = "Already Saved to Favorites"
+    favoriteBtnEl.setAttribute("disabled", true)
+  } else {
+    favoriteBtnEl.innerHTML = `<i class="fa-regular fa-square-plus fa-sm fa-lg"></i> Save to Favorites`;
+  }
 
   if (wikiLinkEl.classList.contains("show")) {
     wikiLinkEl.classList.remove("show");
@@ -177,8 +140,6 @@ const getDesc = async (item) => {
   }
 
   favoriteBtnEl.addEventListener("click", function () {
-    const favoriteSearches =
-      JSON.parse(localStorage.getItem("favorites")) || [];
     let favoriteObj = {
       id: Math.round(Math.random() * 10000000),
       value: descResponse.name,
@@ -201,5 +162,61 @@ searchForm.addEventListener("submit", (e) => {
   getDesc(searchVal);
   searchEl.value = "";
 });
+
+const displayFavorites = () => {
+  const favoriteSearches = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  resultEl.textContent = "";
+  if (favoriteSearches.length > 0) {
+    resHeadEl.textContent = "Favorite Searches";
+
+    for (let i = 0; i < favoriteSearches.length; i++) {
+      let cardContainer = document.createElement("div");
+
+      cardContainer.setAttribute("class", "resultCard font-space");
+
+      resultEl.appendChild(cardContainer);
+
+      let cardNumber = document.createElement("p");
+      cardNumber.classList.add("font-heavy");
+      cardNumber.textContent = i + 1;
+
+      let favText = document.createElement("h5");
+      favText.classList.add("text-lead", "text-favorite");
+      favText.textContent = favoriteSearches[i].value;
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.setAttribute("class", "glass-button deleteBtn");
+      deleteBtn.innerHTML = `<i class="fa-regular fa-square-minus" data-id="${favoriteSearches[i].id}"></i>`;
+      deleteBtn.setAttribute("data-id", favoriteSearches[i].id);
+
+      cardContainer.appendChild(cardNumber);
+      cardContainer.appendChild(favText);
+      cardContainer.appendChild(deleteBtn);
+
+      deleteBtn.addEventListener("click", function (event) {
+        let targetId = event.target.dataset.id;
+
+        let filteredItems = favoriteSearches.filter(
+          (item) => item.id != targetId
+        );
+
+        localStorage.setItem("favorites", JSON.stringify(filteredItems));
+
+        displayFavorites();
+      });
+
+      favText.addEventListener("click", function (event) {
+        let targetText = event.target.textContent;
+
+        getItem(targetText);
+        getDesc(targetText);
+      });
+    }
+  } else {
+    resHeadEl.textContent =
+      "No favorites yet - favorite a search to see it here";
+  }
+};
 
 displayFavorites();
