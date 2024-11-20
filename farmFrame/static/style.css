@@ -59,6 +59,15 @@ body {
   text-wrap: balance;
 }
 
+.text-favorite {
+  padding-top: 15px;
+  font-size: larger;
+}
+
+.text-lead h5 {
+  font-size: x-large;
+}
+
 /* title styles */
 
 #title {
